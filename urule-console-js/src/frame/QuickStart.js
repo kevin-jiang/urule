@@ -59,7 +59,7 @@ export default class QuickStart extends Component{
             // </div>
 
             <div>
-            超智慧规则引擎
+            规则引擎Web可视化设计器
             </div>
     );
     }
