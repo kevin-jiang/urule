@@ -1,11 +1,38 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.bstek.urule</groupId>
-  <artifactId>urule-parent</artifactId>
-  <version>2.0.4</version>
-  <properties>
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.bstek.urule</groupId>
+	<artifactId>urule-parent</artifactId>
+	<version>2.0.4</version>
+
+	<modules>
+		<module>../urule-core</module>
+		<module>../urule-console</module>
+		<module>../urule-springboot</module>
+	</modules>
+
+	<!--<parent>-->
+	<!--<groupId>org.springframework.boot</groupId>-->
+	<!--<artifactId>spring-boot-starter-parent</artifactId>-->
+	<!--<version>1.5.8.RELEASE</version>-->
+	<!--</parent>-->
+
+	<properties>
+		<spring-cloud-dependencies.version>Camden.SR5</spring-cloud-dependencies.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud-dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<licenses>
 		<license>
 			<name>The Apache License, Version 2.0</name>
@@ -28,8 +55,8 @@
 	<organization>
 		<name>Bstek</name>
 		<url>http://www.bstek.com</url>
-	</organization>  
-  <packaging>pom</packaging>
+	</organization>
+	<packaging>pom</packaging>
 	<build>
 		<resources>
 			<resource>
@@ -81,7 +108,7 @@
 					<include>**/*.ttf</include>
 					<include>**/*.woff</include>
 					<include>**/*.woff2</include>
-					<include>**/*.md</include>					
+					<include>**/*.md</include>
 				</includes>
 			</resource>
 		</resources>
@@ -108,45 +135,45 @@
 				</configuration>
 			</plugin>
 			<plugin>
-		      <groupId>org.apache.maven.plugins</groupId>
-		      <artifactId>maven-source-plugin</artifactId>
-		      <version>2.2.1</version>
-		      <executions>
-		        <execution>
-		          <id>attach-sources</id>
-		          <goals>
-		            <goal>jar-no-fork</goal>
-		          </goals>
-		        </execution>
-		      </executions>
-		    </plugin>
-		    <plugin>
-		      <groupId>org.apache.maven.plugins</groupId>
-		      <artifactId>maven-javadoc-plugin</artifactId>
-		      <version>2.9.1</version>
-		      <executions>
-		        <execution>
-		          <id>attach-javadocs</id>
-		          <goals>
-		            <goal>jar</goal>
-		          </goals>
-		        </execution>
-		      </executions>
-		    </plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<version>1.5</version>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
 				<executions>
 					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
+						<id>attach-sources</id>
 						<goals>
-							<goal>sign</goal>
+							<goal>jar-no-fork</goal>
 						</goals>
 					</execution>
 				</executions>
-			</plugin>		    			
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!--<plugin>-->
+			<!--<groupId>org.apache.maven.plugins</groupId>-->
+			<!--<artifactId>maven-gpg-plugin</artifactId>-->
+			<!--<version>1.5</version>-->
+			<!--<executions>-->
+			<!--<execution>-->
+			<!--<id>sign-artifacts</id>-->
+			<!--<phase>verify</phase>-->
+			<!--<goals>-->
+			<!--<goal>sign</goal>-->
+			<!--</goals>-->
+			<!--</execution>-->
+			<!--</executions>-->
+			<!--</plugin>		    			-->
 		</plugins>
 	</build>
 	<distributionManagement>
@@ -165,5 +192,5 @@
 	<issueManagement>
 		<url>https://github.com/youseries/urule/issues</url>
 	</issueManagement>
-	<description>Urule Parent Project</description>  
+	<description>Urule Parent Project</description>
 </project>

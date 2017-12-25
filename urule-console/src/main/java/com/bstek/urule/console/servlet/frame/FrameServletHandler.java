@@ -22,10 +22,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -33,6 +30,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bstek.urule.console.repository.model.*;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -51,10 +49,6 @@ import com.bstek.urule.console.EnvironmentUtils;
 import com.bstek.urule.console.User;
 import com.bstek.urule.console.repository.Repository;
 import com.bstek.urule.console.repository.RepositoryService;
-import com.bstek.urule.console.repository.model.FileType;
-import com.bstek.urule.console.repository.model.RepositoryFile;
-import com.bstek.urule.console.repository.model.Type;
-import com.bstek.urule.console.repository.model.VersionFile;
 import com.bstek.urule.console.servlet.RenderPageServletHandler;
 import com.bstek.urule.console.servlet.RequestContext;
 
@@ -397,6 +391,24 @@ public class FrameServletHandler extends RenderPageServletHandler{
 		writeObjectToJson(resp, projectFileInfo);
 	}
 
+	public void loadPackages(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		String companyId=EnvironmentUtils.getLoginUser(new RequestContext(req, resp)).getCompanyId();
+
+		try{
+
+			List<ResourcePackage> packages= new ArrayList<ResourcePackage>();
+			List<RepositoryFile> repositoryFiles = repositoryService.loadProjects(companyId);
+			for (RepositoryFile repositoryFile: repositoryFiles) {
+				List<ResourcePackage> packagesForCurrentPackage=repositoryService.loadProjectResourcePackages(repositoryFile.getName());
+				packages.addAll(packagesForCurrentPackage);
+				writeObjectToJson(resp, packages);
+			}
+
+		}catch(Exception ex){
+			throw new RuleException(ex);
+		}
+	}
 	
 	public void loadProjects(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		User user=EnvironmentUtils.getLoginUser(new RequestContext(req,resp));

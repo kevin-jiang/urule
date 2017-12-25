@@ -15,6 +15,14 @@ import * as action from './action.js';
 import {getParameter} from '../Utils.js';
 
 $(document).ready(function () {
+
+    $.ajaxSetup({
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true
+    });
+
     const store=createStore(reducer,applyMiddleware(thunk));
     const project=getParameter('project');
     store.dispatch(action.loadData(project));

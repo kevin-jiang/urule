@@ -14,6 +14,14 @@ import * as action from './action.js';
 import ActionEditor from './components/ActionEditor.jsx';
 
 $(document).ready(function(){
+
+    $.ajaxSetup({
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true
+    });
+
     const store= createStore(reducer,applyMiddleware(thunk));
     const file=_getParameter('file');
     if(!file || file.length<1){

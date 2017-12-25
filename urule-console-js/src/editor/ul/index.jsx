@@ -21,6 +21,14 @@ import {getParameter,ajaxSave} from '../../Utils.js';
 import * as event from '../../components/componentEvent.js';
 
 $(document).ready(function () {
+
+    $.ajaxSetup({
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true
+    });
+
     ReactDOM.render(
         <KnowledgeTreeDialog/>,
         document.getElementById('dialogContainer')

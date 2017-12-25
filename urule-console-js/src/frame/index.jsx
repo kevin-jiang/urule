@@ -22,6 +22,14 @@ import * as componentEvent from '../components/componentEvent.js';
 import Loading from '../components/loading/component/Loading.jsx';
 
 $(document).ready(function () {
+
+    $.ajaxSetup({
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true
+    });
+
     window._types=null,window._projectName=null,window.componentEvent=componentEvent;
     const store=createStore(reducer,applyMiddleware(thunk));
     store.dispatch(ACTIONS.loadData());

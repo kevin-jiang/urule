@@ -100,7 +100,7 @@
 	
 	<bean id="urule.repositoryBuilder" class="com.bstek.urule.console.repository.RepositoryBuilder" destroy-method="destroy">
 		<property name="repositoryXml" value="${urule.repository.xml}"></property>
-		<property name="repoHomeDir" value="${urule.repository.dir}"></property>
+		<!--<property name="repoHomeDir" value="${urule.repository.dir}"></property>-->
 		<property name="repositoryDatasourceName" value="${urule.repository.datasourcename}"></property>
 		<property name="databaseType" value="${urule.repository.databasetype}"></property>
 	</bean>
@@ -108,6 +108,13 @@
 	<bean id="urule.repositoryService" class="com.bstek.urule.console.repository.RepositoryServiceImpl">
 		<property name="repositoryBuilder" ref="urule.repositoryBuilder"></property>
 		<property name="permissionService" ref="urule.permissionService"></property>
+	</bean>
+
+	<bean id="hyperSmartDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"><value>${jdbc.driverClassName}</value></property>
+		<property name="url"><value>${jdbc.url}</value></property>
+		<property name="username"><value>${jdbc.username}</value></property>
+		<property name="password"><value>${jdbc.password}</value></property>
 	</bean>
 	
 </beans>

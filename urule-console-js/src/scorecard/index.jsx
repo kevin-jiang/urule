@@ -49,6 +49,14 @@ import {ajaxSave,getParameter} from '../Utils.js';
 import KnowledgeTreeDialog from '../components/dialog/component/KnowledgeTreeDialog.jsx';
 
 $(document).ready(function (e) {
+
+    $.ajaxSetup({
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true
+    });
+
     const file=getParameter("file");
     if(!file){
         alert("未指定文件.");

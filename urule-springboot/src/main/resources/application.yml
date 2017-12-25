@@ -1,0 +1,94 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname:eureka.einwin.com}:${eureka.server.port:18761}/eureka/
+  instance:
+    ip-address: 192.168.0.119
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    non-secure-port: 8080
+
+#skip.remote.servers: all
+management:
+#  port: 54001
+#  health:
+#    mail:
+#      enabled: false
+     security:
+        enabled: false
+
+einwin:
+  framework:
+      cors: false
+      orgTypes:
+         -
+            name: 主数据平台
+            type: -1
+         -
+            name: 社商
+            type: 0
+         -
+            name: 悦帮
+            type: 1
+         -
+            name: 物业
+            type: 3
+         -
+            name: sass
+            type: 4
+         -
+            name: 收费云
+            type: 2
+
+spring:
+  profiles:
+    active: test
+  output:
+    ansi:
+      enabled: detect
+  main:
+    #bannerMode: log
+  mvc:
+    favicon:
+      enabled: false
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+  messages:
+    basename: i18n/messages
+    cache-seconds: -1
+    encoding: utf-8
+  boot:
+    admin:
+      url: http://admin.einwin.com:18760
+
+server:
+  port: 8080
+  context-path: /
+  compression:
+    enabled: true
+
+logging:
+  file: ${spring.application.name}
+  level:
+    ROOT: DEBUG
+    org.springframework: DEBUG
+    org.springframework.web.servlet.view: DEBUG
+    org.springframework.web.servlet.mvc: DEBUG
+
+urule:
+  repository:
+    databasetype: mysql
+#    dir: d:/demo/urule/repo
+    datasourcename: hyperSmartDataSource
+
+jdbc:
+  driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql://mysql.einwin.com:3306/urule-center?tinyInt1isBit=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+  username: root
+  password: 123456

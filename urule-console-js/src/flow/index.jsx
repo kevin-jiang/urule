@@ -25,6 +25,14 @@ import {getParameter,ajaxSave} from '../Utils.js';
 
 
 $(document).ready(function(){
+
+    $.ajaxSetup({
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true
+    });
+
     const containerId='container';
     const designer=new RuleFlowDesigner(containerId);
     const file=getParameter('file');

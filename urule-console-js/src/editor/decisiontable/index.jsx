@@ -60,6 +60,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 $(document).ready(function () {
+
+    $.ajaxSetup({
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true
+    });
+
     ReactDOM.render(
         <KnowledgeTreeDialog/>,
         document.getElementById('dialogContainer')

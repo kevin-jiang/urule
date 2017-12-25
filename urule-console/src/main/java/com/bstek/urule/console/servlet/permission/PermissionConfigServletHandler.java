@@ -101,7 +101,7 @@ public class PermissionConfigServletHandler extends RenderPageServletHandler{
 				result.add(up);
 			}
 			result.addAll(permissions);
-			List<RepositoryFile> projects=repositoryService.loadProjects(companyId);
+			List<RepositoryFile> projects=repositoryService. loadProjects(companyId);
 			for(UserPermission p:result){
 				buildProjectConfigs(projects, p);
 			}

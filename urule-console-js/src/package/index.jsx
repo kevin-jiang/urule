@@ -13,6 +13,14 @@ import PackageEditor from './components/PackageEditor.jsx';
 import * as action from './action.js';
 
 $(document).ready(function(){
+
+    $.ajaxSetup({
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true
+    });
+
     const store=createStore(reducer,applyMiddleware(thunk));
     const project=_getParameter("file");
     store.dispatch(action.loadMasterData(project));

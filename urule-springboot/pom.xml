@@ -8,6 +8,7 @@
         <java.version>1.7</java.version>
         <tomcat.version>8.5.5</tomcat.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-cloud-dependencies.version>Camden.SR5</spring-cloud-dependencies.version>
     </properties>
     <licenses>
         <license>
@@ -32,20 +33,71 @@
         <name>Bstek</name>
         <url>http://www.bstek.com</url>
     </organization>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.8.RELEASE</version>
     </parent>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-parent</artifactId>-->
+            <!--<version>1.5.8.RELEASE</version>-->
+            <!--</dependency>-->
+        </dependencies>
+    </dependencyManagement>
+
+    <!--<parent>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-starter-parent</artifactId>-->
+    <!--<version>1.5.8.RELEASE</version>-->
+    <!--</parent>-->
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.einwin.auth</groupId>
+            <artifactId>auth-center-client</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-web</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.bstek.urule</groupId>
             <artifactId>urule-console</artifactId>
-            <version>2.1.1-SNAPSHOT</version>
+            <version>2.1.4-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>

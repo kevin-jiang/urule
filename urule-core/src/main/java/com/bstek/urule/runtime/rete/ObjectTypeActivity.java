@@ -37,6 +37,9 @@ public class ObjectTypeActivity extends AbstractActivity {
 		return visitPahs(context,obj,tracker,variableMap);
 	}
 	public boolean support(Object object){
+
+		Class<?> objectClass = object.getClass();
+
 		if(typeClass==null && clazz==null){
 			return true;
 		}
@@ -52,7 +55,9 @@ public class ObjectTypeActivity extends AbstractActivity {
 					return true;
 				}
 			}
-		}else if(typeClass!=null && typeClass.isAssignableFrom(object.getClass())){
+		}else if(typeClass!=null && typeClass.isAssignableFrom(objectClass)){
+			return true;
+		}else if(typeClass!=null && typeClass.getName().equals(objectClass.getName())){
 			return true;
 		}
 		return false;

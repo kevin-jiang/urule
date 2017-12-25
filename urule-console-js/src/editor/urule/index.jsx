@@ -54,6 +54,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 $(document).ready(function () {
+
+    $.ajaxSetup({
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true
+    });
+
     const container=$('#container');
     container.urule();
     const dialogContainer=$('<div>');

@@ -14,6 +14,14 @@ import ConstantEditor from './components/ConstantEditor.jsx';
 import * as action from './action.js';
 
 $(document).ready(function(){
+
+    $.ajaxSetup({
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true
+    });
+
     const store=createStore(reducer,applyMiddleware(thunk));
     const file=_getParameter('file');
     if(!file || file.length<1){

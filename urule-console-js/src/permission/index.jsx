@@ -14,6 +14,14 @@ import reducer from './reducer.js';
 import * as action from './action.js';
 
 $(document).ready(function () {
+
+    $.ajaxSetup({
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true
+    });
+
     const store=createStore(reducer,applyMiddleware(thunk));
     store.dispatch(action.loadMasterData());
     ReactDOM.render(
